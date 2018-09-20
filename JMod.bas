@@ -104,6 +104,22 @@ Function Pi()
 End Function
 
 
+'Right pad
+Function RightPad(ByVal source As String, ByVal inserter As String, ByVal wishedLength As Integer)
+
+    Dim result As String
+    result = source
+
+    While Len(result) < wishedLength
+        result = result & inserter
+
+    Wend
+
+    RightPad = result
+
+End Function
+
+
 
 
 
