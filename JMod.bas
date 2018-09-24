@@ -129,6 +129,7 @@ If expression = True Then
     IfA = trueVal
 Else
     IfA = falseVal
+End If
 End Function
 
 
