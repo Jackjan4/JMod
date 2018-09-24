@@ -1,12 +1,13 @@
 Attribute VB_Name = "JMod"
 ' Module by Jan-Philipp Roslan
 ' Contains utility function for better code maintenance and to reduce duplicated code
-' Version: 0.4
-' Date: 16.8.16
-' Time: 15:52
+' Version: 0.5
+' Date: 24.09.18
+' Time: 09:55
 
 
-
+Public Const DoubleMin As Double = -1.79769313486231E+308
+Public Const DoubleMax As Double = 1.79769313486231E+308
 
 ' Using a CommandButton for toggling an area
 Sub FoldingButton(ByVal area As String, ByVal row As Boolean, ByRef btn As CommandButton, ByVal openednstr As String, ByVal closedstr As String)
@@ -56,7 +57,7 @@ End Sub
 ' Check if cell is empty
 Function CellIsEmpty(ByVal range As range)
 
-    If range.value = "" Or IsEmpty(range) Then
+    If range.Value = "" Or IsEmpty(range) Then
         CellIsEmpty = True
     Else
         CellIsEmpty = False
@@ -70,11 +71,11 @@ Function Val(ByVal cell As Variant)
 
     Select Case TypeName(cell)
 
-        Case "string", "String":
-            Val = range(cell).value
+    Case "string", "String":
+        Val = range(cell).Value
 
-        Case "Range", "range":
-            Val = cell.value
+    Case "Range", "range":
+        Val = cell.Value
     End Select
 End Function
 
@@ -119,6 +120,16 @@ Function RightPad(ByVal source As String, ByVal inserter As String, ByVal wished
 
 End Function
 
+
+
+' If assignment
+Function IfA(ByVal expression As Boolean, trueVal As Variant, falseVal As Variant)
+
+If expression = True Then
+    IfA = trueVal
+Else
+    IfA = falseVal
+End Function
 
 
 
