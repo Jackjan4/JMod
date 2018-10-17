@@ -1,9 +1,8 @@
-Attribute VB_Name = "JMod"
 ' Module by Jan-Philipp Roslan
 ' Contains utility function for better code maintenance and to reduce duplicated code
 ' Version: 0.5
-' Date: 24.09.18
-' Time: 09:55
+' Date: 17.10.18
+' Time: 12:36
 
 
 Public Const DoubleMin As Double = -1.79769313486231E+308
@@ -125,11 +124,33 @@ End Function
 ' If assignment
 Function IfA(ByVal expression As Boolean, trueVal As Variant, falseVal As Variant)
 
-If expression = True Then
-    IfA = trueVal
-Else
-    IfA = falseVal
-End If
+    If expression = True Then
+        IfA = trueVal
+    Else
+        IfA = falseVal
+    End If
+End Function
+
+
+' Check if Directory exists
+Function DirectoryExists(ByVal path As String)
+    DirectoryExists = False
+
+
+' Check if directory is valid path name
+    If Dir(path, vbDirectory) = "" Or Dir(path, vbDirectory) = vbNullString Then
+        DirectoryExists = False
+        Exit Function
+    End If
+    
+    
+    ' Check if path is really a directory
+    If (GetAttr(path) And vbDirectory) <> vbDirectory Then
+        DirectoryExists = False
+        Exit Function
+    End If
+
+    DirectoryExists = True
 End Function
 
 
